@@ -3,7 +3,7 @@ const User = require("../models/User")
 const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
-  const { firstname, lastname, email, password } = req.body;
+  const { firstname, lastname, email, password,role } = req.body;
   if (!firstname || !email || !password) {
     return res.json({ massage: " All field is required" });
   }
@@ -20,6 +20,7 @@ const register = async (req, res) => {
     firstname,
     lastname,
     email,
+    role,
     password: hashedpassword,
   });
 
@@ -47,7 +48,7 @@ const login = async (req, res) => {
     return res.json({ massage: "something went wrong" });
   }
   //token generate
-  const token = jwt.sign({ Userid: isexist._id }, process.env.JWT_SECRET_KEY, {
+  const token = jwt.sign({ Userid: isexist._id ,role:isexist.role }, process.env.JWT_SECRET_KEY, {
     expiresIn: "12h",
   });
   res.json({
@@ -56,6 +57,7 @@ const login = async (req, res) => {
       id: isexist._id,
       username: isexist.firstname + " " + isexist.lastname,
       email: isexist.email,
+      role:isexist.role,
       token: token,
     },
   });

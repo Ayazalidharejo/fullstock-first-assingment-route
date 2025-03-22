@@ -6,7 +6,8 @@ price:{type:Number,require:true},
 description:{type:String},
 category:{type:String,require:true},
 weight:{type:Number},
-unites:{type:Number}
+unites:{type:Number},
+ImageBase64:{type:String}
 
 },{timestamps:true})
 
@@ -17,6 +18,7 @@ firstname:{type:String,required:true,minlength:3,maxlength:12},
 lastname:{type:String},
 email:{type:String,required:true,unique:true},
 password:{type:String,required:true},
+role:{type:String},
 products:[productsschema]
 },{timestamps:true})
 
