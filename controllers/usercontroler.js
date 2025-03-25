@@ -1,3 +1,4 @@
+const productmodel = require("../models/productmodel");
 const User = require("../models/User");
 const addproduct = async (req, res) => {
   try {
@@ -8,16 +9,27 @@ const addproduct = async (req, res) => {
     if (!userisexist) {
       return res.status(404).json({ massage: "user not found" });
     }
+   
     const ImageBase64 = req.file.buffer.toString("base64");
-    userisexist.products.push({
-      name,
-      price,
-      category,
-      weight,
-      unites,
-      description,
-      ImageBase64
-    });
+
+    // userisexist.products.push({
+    //   name,
+    //   price,
+    //   category,
+    //   weight,
+    //   unites,
+    //   description,
+    //   ImageBase64,
+    //   user:userid,
+    // });
+
+    const product = new  productmodel({
+      name, price, category, weight, unites, description,ImageBase64,user:userid,
+    })
+
+    const createProduct= await product.save();
+
+    res.status(201).json(createProduct)
 
     await userisexist.save();
 
