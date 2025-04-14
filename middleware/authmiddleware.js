@@ -11,6 +11,8 @@ const jwt = require("jsonwebtoken");
     }
     try {
     const decodetoken = jwt.verify(token,process.env.JWT_SECRET_KEY)
+    console.log(decodetoken); // Check token payload structure
+req.user = decodetoken;
     req.user =decodetoken;
     console.log(decodetoken)
     

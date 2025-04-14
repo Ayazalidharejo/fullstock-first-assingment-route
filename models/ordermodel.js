@@ -20,4 +20,4 @@ const orderschema = new mongoose.Schema({
   totalprice: { type: String, required: true },
 });
 
-module.exports = mongoose.model("order", orderschema);
+module.exports = mongoose.model("Order", orderschema);

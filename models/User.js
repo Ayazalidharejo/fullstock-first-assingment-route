@@ -20,7 +20,9 @@ lastname:{type:String},
 email:{type:String,required:true,unique:true},
 password:{type:String,required:true},
 role:{type:String},
-products:[{type:mongoose.Schema.Types.ObjectId ,ref:"product"}]
+products:[{type:mongoose.Schema.Types.ObjectId ,ref:"product"}],
+resetpasswordtoken: String,
+resetpasswordexpries: Date,
 },{timestamps:true})
 
 
